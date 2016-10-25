@@ -1,0 +1,63 @@
+Define GameName "Game"
+Define GameDir ..\
+
+Define LicensePath ..\..\..\cdgen\LCNSFILE\
+Define LicenseFile licensee.dat
+
+Disc CDROMXA_PSX ;the disk format
+
+	CatalogNumber 0000000000000
+
+	LeadIn XA 
+		Empty 300
+		PostGap 150 
+	EndTrack
+
+	Track XA
+
+		Pause 150
+		Volume ISO9660
+	
+			SystemArea [LicensePath][LicenseFile]
+			
+			PrimaryVolume
+				SystemIdentifier "PLAYSTATION"
+				VolumeIdentifier [GameName]
+				VolumeSetIdentifier [GameName]
+				PublisherIdentifier "SCEE"
+				DataPreparerIdentifier "SONY"
+				ApplicationIdentifier "PLAYSTATION"
+				LPath ;path tables as specified for PlayStation
+				OptionalLpath
+				MPath
+				OptionalMpath
+
+				Hierarchy 
+					XAFileAttributes  Form1 Audio
+					XAVideoAttributes ApplicationSpecific
+					XAAudioAttributes ADPCM_C Stereo
+					
+					File SYSTEM.CNF
+						XAFileAttributes Form1 Data
+						Source [GameDir]cdrom\TOOLS\SYSTEM.txt
+					EndFile
+					
+					File MAIN.EXE
+						XAFileAttributes Form1 Data
+						Source [GameDir]\MAIN.EXE
+					EndFile
+
+				EndHierarchy 
+			EndPrimaryVolume 
+		EndVolume 
+
+		Empty 300
+		PostGap 150 
+	
+	EndTrack
+
+	LeadOut XA 
+		Empty 150
+	EndTrack
+
+EndDisc

@@ -1,0 +1,10 @@
+These files I can't serve for legal reasons, but I can link you to them.
+
+FOR THE VIRTUAL MACHINE
+Virtualbox 	-> 	https://www.virtualbox.org/wiki/Downloads
+Windows XP	-> 	http://softlay.net/operating-system/windows-xp-sp3-iso-full-version-free-download.html
+
+ON THE VIRTUAL MACHINE
+PSY-Q SDK	->	http://www.psxdev.net/downloads.html
+ePSXe 2.0.2.1	->	http://www.epsxe.com/files/ePSXe202-1.zip
+ePSXe BIOS	->	https://www.loveroms.com/extras/psx-bios.php
