@@ -27,7 +27,7 @@ if exist "images.h" del "images.h"
 
 :: Convert the images to 8-bit
 for %%i in (images/*.*) do (
-	convert images/%%i -depth 2 images\8bit\img_%%i >nul 2>&1
+	.\bin\convert.exe images/%%i -depth 2 images\8bit\img_%%i >nul 2>&1
 	echo Converted %%i to 8-bit .BMP
 )
 
@@ -40,10 +40,10 @@ SET index=0
 
 :: Convert the 8-bit images to TIM
 for %%i in (images/8bit/*.*) do (
-	FOR /F "tokens=* USEBACKQ" %%F IN (`magick identify -format "%%w" images\8bit\%%i`) DO (
+	FOR /F "tokens=* USEBACKQ" %%F IN (`.\bin\magick.exe identify -format "%%w" images\8bit\%%i`) DO (
 		SET width=%%F
 	)
-	FOR /F "tokens=* USEBACKQ" %%F IN (`magick identify -format "%%h" images\8bit\%%i`) DO (
+	FOR /F "tokens=* USEBACKQ" %%F IN (`.\bin\magick.exe identify -format "%%h" images\8bit\%%i`) DO (
 		SET height=%%F
 	)
 	
@@ -57,7 +57,7 @@ for %%i in (images/8bit/*.*) do (
 	)
 	set /A clutX = 320
 	set /A clutY = 480 - !index!
-	img2tim -bpp 8 -b -tcol 0 0 0 -usealpha -plt !clutX! !clutY! -org !currentX! !currentY! -o "%CD%\images\tim\%%~ni.tim" %CD%\images\8bit\%%i >nul 2>&1
+	.\bin\img2tim.exe -bpp 8 -b -tcol 0 0 0 -usealpha -plt !clutX! !clutY! -org !currentX! !currentY! -o "%CD%\images\tim\%%~ni.tim" %CD%\images\8bit\%%i >nul 2>&1
 	SET rawname=%%i
 	echo unsigned short !rawname:~0,-4!_gpu_x = !currentX!; >> images.h
 	echo unsigned short !rawname:~0,-4!_gpu_y = !currentY!; >> images.h
@@ -77,10 +77,10 @@ for %%i in (images/tim/*.*) do (
 
 :: Write image width and height to images.h
 for %%i in (images/8bit/*.*) do (
-	FOR /F "tokens=* USEBACKQ" %%F IN (`magick identify -format "%%w" images\8bit\%%i`) DO (
+	FOR /F "tokens=* USEBACKQ" %%F IN (`.\bin\magick identify -format "%%w" images\8bit\%%i`) DO (
 		SET width=%%F
 	)
-	FOR /F "tokens=* USEBACKQ" %%F IN (`magick identify -format "%%h" images\8bit\%%i`) DO (
+	FOR /F "tokens=* USEBACKQ" %%F IN (`.\bin\magick identify -format "%%h" images\8bit\%%i`) DO (
 		SET height=%%F
 	)
 	SET rawname=%%i
