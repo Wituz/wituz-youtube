@@ -27,7 +27,7 @@ if exist "images.h" del "images.h"
 
 :: Convert the images to 8-bit
 for %%i in (images/*.*) do (
-	.\bin\convert.exe images/%%i -depth 2 images\8bit\img_%%i >nul 2>&1
+	.\bin\convert.exe images/%%i -depth 2 images\8bit\img_%%i 
 	echo Converted %%i to 8-bit .BMP
 )
 
@@ -57,7 +57,7 @@ for %%i in (images/8bit/*.*) do (
 	)
 	set /A clutX = 320
 	set /A clutY = 480 - !index!
-	.\bin\img2tim.exe -bpp 8 -b -tcol 0 0 0 -usealpha -plt !clutX! !clutY! -org !currentX! !currentY! -o "%CD%\images\tim\%%~ni.tim" %CD%\images\8bit\%%i >nul 2>&1
+	.\bin\img2tim.exe -bpp 8 -b -tcol 0 0 0 -usealpha -plt !clutX! !clutY! -org !currentX! !currentY! -o "%CD%\images\tim\%%~ni.tim" "%CD%\images\8bit\%%i" 
 	SET rawname=%%i
 	echo unsigned short !rawname:~0,-4!_gpu_x = !currentX!; >> images.h
 	echo unsigned short !rawname:~0,-4!_gpu_y = !currentY!; >> images.h
@@ -71,7 +71,7 @@ echo Converting TIM files to header
 
 :: Convert the TIM images to C headers
 for %%i in (images/tim/*.*) do (
-	bin2h images\tim\%%i images\headers\%%~ni.h %%~ni -nosize >nul 2>&1
+	.\bin\bin2h.exe images\tim\%%i images\headers\%%~ni.h %%~ni -nosize 
 	echo Converted %%i to a C header
 )
 
