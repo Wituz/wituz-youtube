@@ -27,7 +27,7 @@ if exist "images.h" del "images.h"
 
 :: Convert the images to 8-bit
 for %%i in (images/*.*) do (
-	.\bin\convert.exe images/%%i -depth 8 images\8bit\img_%%i 
+	.\bin\convert.exe images/%%i -depth 4 images\8bit\img_%%i 
 	echo Converted %%i to 8-bit .BMP
 )
 
