@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<iso_project image_name="image.bin" cue_sheet="image.cue" no_xa="1">
+	<track type="data">
+		<license file="LICENSEE.DAT"/>
+		<directory_tree>
+			<file name="SYSTEM.CNF"	type="data"	source="SYSTEM.CNF"/>
+			<file name="HPUP.VAG"	type="data"	source="HPUP.VAG"/>
+			<file name="CRASH.TIM"	type="data"	source="CRASH.TIM"/>
+			<file name="PS1.TIM"	type="data"	source="PS1.TIM"/>
+			<file name="MAIN.EXE"	type="data"	source="MAIN.EXE"/>
+			<!-- Add your own files or folders here -->
+			<dummy sectors="1024"/>
+		</directory_tree>
+	</track>
+</iso_project>
